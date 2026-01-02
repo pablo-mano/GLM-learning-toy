@@ -132,6 +132,226 @@ DOMAINS_DATA = [
         ]
     },
     {
+        "name": "Space & NASA",
+        "description": "Explore space, planets, rockets, and NASA vocabulary",
+        "icon": "",
+        "color": "#1E88E5",
+        "words": [
+            # BEGINNER - Basic space concepts
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-star"),
+                "difficulty": "beginner",
+                "sort_order": 1,
+                "translations": [
+                    {"language": "en", "text": "Star", "phonetic": "/stɑːr/", "example": "The star shines at night."},
+                    {"language": "pl", "text": "Gwiazda", "phonetic": "/ˈɡvʲa.zda/", "example": "Gwiazda świeci w nocy."},
+                    {"language": "es", "text": "Estrella", "phonetic": "/esˈtɾe.ʎa/", "example": "La estrella brilla en la noche."}
+                ],
+                "prerequisites": []
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-moon"),
+                "difficulty": "beginner",
+                "sort_order": 2,
+                "translations": [
+                    {"language": "en", "text": "Moon", "phonetic": "/muːn/", "example": "The moon is full tonight."},
+                    {"language": "pl", "text": "Księżyc", "phonetic": "/ˈkʂɛ̃.ʐɨt͡s/", "example": "Księżyc jest w pełni."},
+                    {"language": "es", "text": "Luna", "phonetic": "/ˈlu.na/", "example": "La luna está llena esta noche."}
+                ],
+                "prerequisites": []
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-rocket"),
+                "difficulty": "beginner",
+                "sort_order": 3,
+                "translations": [
+                    {"language": "en", "text": "Rocket", "phonetic": "/ˈrɒkɪt/", "example": "The rocket flies to space."},
+                    {"language": "pl", "text": "Rakieta", "phonetic": "/raˈkʲɛ.ta/", "example": "Rakieta leci w kosmos."},
+                    {"language": "es", "text": "Cohete", "phonetic": "/koˈe.te/", "example": "El cohete vuela al espacio."}
+                ],
+                "prerequisites": []
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-space"),
+                "difficulty": "beginner",
+                "sort_order": 4,
+                "translations": [
+                    {"language": "en", "text": "Space", "phonetic": "/speɪs/", "example": "Earth is in space."},
+                    {"language": "pl", "text": "Kosmos", "phonetic": "/ˈkɔs.mɔs/", "example": "Ziemia jest w kosmosie."},
+                    {"language": "es", "text": "Espacio", "phonetic": "/esˈpa.θjo/", "example": "La Tierra está en el espacio."}
+                ],
+                "prerequisites": []
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-sun"),
+                "difficulty": "beginner",
+                "sort_order": 5,
+                "translations": [
+                    {"language": "en", "text": "Sun", "phonetic": "/sʌn/", "example": "The sun gives us light."},
+                    {"language": "pl", "text": "Słońce", "phonetic": "/ˈswɔɲt͡sɛ/", "example": "Słońce daje nam światło."},
+                    {"language": "es", "text": "Sol", "phonetic": "/sol/", "example": "El sol nos da luz."}
+                ],
+                "prerequisites": []
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-astronaut"),
+                "difficulty": "beginner",
+                "sort_order": 6,
+                "translations": [
+                    {"language": "en", "text": "Astronaut", "phonetic": "/ˈæstrənɔːt/", "example": "The astronaut floats in space."},
+                    {"language": "pl", "text": "Astronauta", "phonetic": "/as.troˈnaw.ta/", "example": "Astronauta unosi się w kosmosie."},
+                    {"language": "es", "text": "Astronauta", "phonetic": "/as.tɾoˈnaw.ta/", "example": "El astronauta flota en el espacio."}
+                ],
+                "prerequisites": []
+            },
+            # INTERMEDIATE
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-planet"),
+                "difficulty": "intermediate",
+                "sort_order": 7,
+                "translations": [
+                    {"language": "en", "text": "Planet", "phonetic": "/ˈplænɪt/", "example": "Earth is a blue planet."},
+                    {"language": "pl", "text": "Planeta", "phonetic": "/plaˈnɛ.ta/", "example": "Ziemia jest niebieską planetą."},
+                    {"language": "es", "text": "Planeta", "phonetic": "/plaˈnɛ.ta/", "example": "La Tierra es un planeta azul."}
+                ],
+                "prerequisites": ["word-star", "word-space"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-earth"),
+                "difficulty": "intermediate",
+                "sort_order": 8,
+                "translations": [
+                    {"language": "en", "text": "Earth", "phonetic": "/ɜːrθ/", "example": "We live on Earth."},
+                    {"language": "pl", "text": "Ziemia", "phonetic": "/ˈʑɛ.mja/", "example": "Mieszkamy na Ziemi."},
+                    {"language": "es", "text": "Tierra", "phonetic": "/ˈtjɛ.ɾa/", "example": "Vivimos en la Tierra."}
+                ],
+                "prerequisites": ["word-planet", "word-sun"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-orbit"),
+                "difficulty": "intermediate",
+                "sort_order": 9,
+                "translations": [
+                    {"language": "en", "text": "Orbit", "phonetic": "/ˈɔːrbɪt/", "example": "The satellite is in orbit."},
+                    {"language": "pl", "text": "Orbita", "phonetic": "/ˈɔr.bi.ta/", "example": "Satelita jest na orbicie."},
+                    {"language": "es", "text": "Órbita", "phonetic": "/ˈoɾ.bi.ta/", "example": "El satélite está en órbita."}
+                ],
+                "prerequisites": ["word-planet", "word-rocket"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-mars"),
+                "difficulty": "intermediate",
+                "sort_order": 10,
+                "translations": [
+                    {"language": "en", "text": "Mars", "phonetic": "/mɑːrz/", "example": "Mars is the red planet."},
+                    {"language": "pl", "text": "Mars", "phonetic": "/mars/", "example": "Mars jest czerwoną planetą."},
+                    {"language": "es", "text": "Marte", "phonetic": "/maɾ.te/", "example": "Marte es el planeta rojo."}
+                ],
+                "prerequisites": ["word-planet", "word-earth"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-satellite"),
+                "difficulty": "intermediate",
+                "sort_order": 11,
+                "translations": [
+                    {"language": "en", "text": "Satellite", "phonetic": "/ˈsætəlaɪt/", "example": "The satellite orbits Earth."},
+                    {"language": "pl", "text": "Satelita", "phonetic": "/sa.tɛˈlita/", "example": "Satelita krąży wokół Ziemi."},
+                    {"language": "es", "text": "Satélite", "phonetic": "/saˈtɛ.li.tɛ/", "example": "El satélite orbita la Tierra."}
+                ],
+                "prerequisites": ["word-orbit", "word-earth"]
+            },
+            # ADVANCED
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-galaxy"),
+                "difficulty": "advanced",
+                "sort_order": 12,
+                "translations": [
+                    {"language": "en", "text": "Galaxy", "phonetic": "/ˈɡæləksi/", "example": "Our galaxy is the Milky Way."},
+                    {"language": "pl", "text": "Galaktyka", "phonetic": "/ɡaˈlak.tɨ.ka/", "example": "Nasza galaktyka to Droga Mleczna."},
+                    {"language": "es", "text": "Galaxia", "phonetic": "/ɡaˈlak.sja/", "example": "Nuestra galaxia es la Vía Láctea."}
+                ],
+                "prerequisites": ["word-star", "word-space"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-telescope"),
+                "difficulty": "advanced",
+                "sort_order": 13,
+                "translations": [
+                    {"language": "en", "text": "Telescope", "phonetic": "/ˈtɛlɪskoʊp/", "example": "The telescope sees far away."},
+                    {"language": "pl", "text": "Teleskop", "phonetic": "/tɛˈlɛs.kɔp/", "example": "Teleskop widzi daleko."},
+                    {"language": "es", "text": "Telescopio", "phonetic": "/tɛˈlɛs.kɔ.pjo/", "example": "El telescopio ve lejos."}
+                ],
+                "prerequisites": ["word-star", "word-planet"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-meteor"),
+                "difficulty": "advanced",
+                "sort_order": 14,
+                "translations": [
+                    {"language": "en", "text": "Meteor", "phonetic": "/ˈmiːtiɔːr/", "example": "A meteor flew across the sky."},
+                    {"language": "pl", "text": "Meteor", "phonetic": "/ˈmʲɛ.tɔr/", "example": "Meteor przeleciał po niebie."},
+                    {"language": "es", "text": "Meteorito", "phonetic": "/mɛ.tɛ.oˈɾi.to/", "example": "Un meteorito cruzó el cielo."}
+                ],
+                "prerequisites": ["word-star", "word-space"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-gravity"),
+                "difficulty": "advanced",
+                "sort_order": 15,
+                "translations": [
+                    {"language": "en", "text": "Gravity", "phonetic": "/ˈɡrævəti/", "example": "Gravity keeps us on the ground."},
+                    {"language": "pl", "text": "Grawitacja", "phonetic": "/ɡra.viˈta.ts͡ja/", "example": "Grawitacja trzyma nas na ziemi."},
+                    {"language": "es", "text": "Gravedad", "phonetic": "/ɡɾa.βɛˈðað/", "example": "La gravedad nos mantiene en el suelo."}
+                ],
+                "prerequisites": ["word-earth", "word-orbit"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-nebula"),
+                "difficulty": "advanced",
+                "sort_order": 16,
+                "translations": [
+                    {"language": "en", "text": "Nebula", "phonetic": "/ˈnɛbjələ/", "example": "A nebula is a cloud in space."},
+                    {"language": "pl", "text": "Mgławica", "phonetic": "/mɡwaˈvʲi.t͡sa/", "example": "Mgławica to chmura w kosmosie."},
+                    {"language": "es", "text": "Nebulosa", "phonetic": "/nɛ.buˈlɔ.sa/", "example": "Una nebulosa es una nube en el espacio."}
+                ],
+                "prerequisites": ["word-galaxy", "word-star"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-crater"),
+                "difficulty": "advanced",
+                "sort_order": 17,
+                "translations": [
+                    {"language": "en", "text": "Crater", "phonetic": "/ˈkreɪtər/", "example": "The moon has many craters."},
+                    {"language": "pl", "text": "Kratier", "phonetic": "/ˈkra.t͡ɕɛr/", "example": "Księżyc ma wiele kraterów."},
+                    {"language": "es", "text": "Cráter", "phonetic": "/ˈkɾa.tɛɾ/", "example": "La luna tiene muchos cráteres."}
+                ],
+                "prerequisites": ["word-moon", "word-mars"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-launchpad"),
+                "difficulty": "advanced",
+                "sort_order": 18,
+                "translations": [
+                    {"language": "en", "text": "Launchpad", "phonetic": "/ˈlɔːntʃpæd/", "example": "The rocket waits on the launchpad."},
+                    {"language": "pl", "text": "Platforma startowa", "phonetic": "/platˈfɔr.ma starˈtɔ.va/", "example": "Rakieta czeka na platformie startowej."},
+                    {"language": "es", "text": "Plataforma de lanzamiento", "phonetic": "/plaˈtɔr.ma ma lan.θaˈmjen.to/", "example": "El cohete espera en la plataforma de lanzamiento."}
+                ],
+                "prerequisites": ["word-rocket", "word-astronaut"]
+            },
+            {
+                "id": uuid.uuid5(uuid.NAMESPACE_DNS, "word-mission-control"),
+                "difficulty": "advanced",
+                "sort_order": 19,
+                "translations": [
+                    {"language": "en", "text": "Mission Control", "phonetic": "/ˈmɪʃn kənˈtroʊl/", "example": "Mission Control talks to astronauts."},
+                    {"language": "pl", "text": "Centrum kontroli", "phonetic": "/ˈt͡sɛn.tɾum kɔnˈtrɔ.lɨ/", "example": "Centrum kontroli rozmawia z astronautami."},
+                    {"language": "es", "text": "Control de misión", "phonetic": "/kɔnˈtɾɔl dɛ miˈsjɔn/", "example": "El control de misión habla con los astronautas."}
+                ],
+                "prerequisites": ["word-astronaut", "word-rocket", "word-satellite"]
+            }
+        ]
+    },
+    {
         "name": "Food & Home",
         "description": "Learn about food and household items",
         "icon": "",
