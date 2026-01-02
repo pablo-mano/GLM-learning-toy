@@ -24,8 +24,6 @@ export default function DashboardPage() {
       navigate('/login')
       return
     }
-    // Fetch data when user is available
-    console.log('Fetching domains and children...')
     fetchDomains()
     fetchChildren()
   }, [user]) // eslint-disable-line react-hooks/exhaustive-deps
