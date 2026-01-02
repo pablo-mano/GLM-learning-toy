@@ -55,3 +55,11 @@ export const domainService = {
     return response.data
   },
 }
+
+// Named exports for direct imports
+export const getDomains = domainService.getDomains
+export const getDomain = domainService.getDomain
+export const createDomain = domainService.createDomain
+export const getDomainWords = domainService.getDomainWords
+export const createWord = domainService.createWord
+export const getDomainGraph = domainService.getDomainGraph

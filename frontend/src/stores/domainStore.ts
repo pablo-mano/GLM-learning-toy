@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import type { Domain, LearningGraph } from '@/types/api'
-import * as domainService from '@/services/domain.service'
+import { getDomains, getDomain, getDomainGraph } from '@/services/domain.service'
 
 interface DomainState {
   domains: Domain[]
@@ -26,7 +26,7 @@ export const useDomainStore = create<DomainState>()((set, get) => ({
   fetchDomains: async () => {
     set({ isLoading: true, error: null })
     try {
-      const domains = await domainService.getDomains()
+      const domains = await getDomains()
       set({ domains, isLoading: false })
     } catch (error) {
       set({
@@ -39,7 +39,7 @@ export const useDomainStore = create<DomainState>()((set, get) => ({
   fetchDomain: async (id: string) => {
     set({ isLoading: true, error: null })
     try {
-      const domain = await domainService.getDomain(id)
+      const domain = await getDomain(id)
       set({ currentDomain: domain, isLoading: false })
     } catch (error) {
       set({
@@ -52,7 +52,7 @@ export const useDomainStore = create<DomainState>()((set, get) => ({
   fetchDomainGraph: async (id: string) => {
     set({ isLoading: true, error: null })
     try {
-      const graph = await domainService.getDomainGraph(id)
+      const graph = await getDomainGraph(id)
       set({ currentGraph: graph, isLoading: false })
     } catch (error) {
       set({

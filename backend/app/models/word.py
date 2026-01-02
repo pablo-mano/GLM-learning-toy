@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, String, DateTime, Integer, ForeignKey, Boolean, UniqueConstraint
+from sqlalchemy import Column, String, DateTime, Integer, ForeignKey, Boolean, UniqueConstraint, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from app.database import Base
