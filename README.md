@@ -2,6 +2,17 @@
 
 A multilingual language learning platform for children with a web-based device emulator, backend API, and parent dashboard.
 
+## Screenshots
+
+### Login Page
+![Login Page](docs/screenshots/login-page.png)
+
+### Parent Dashboard
+![Parent Dashboard](docs/screenshots/dashboard.png)
+
+### Device Emulator
+![Device Emulator](docs/screenshots/device-emulator.png)
+
 ## Features
 
 - **Device Emulator**: Web-based simulation of a physical learning device with screen and text chat
