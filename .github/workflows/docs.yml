@@ -1,0 +1,96 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'README.md'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Create _config.yml for Jekyll
+        run: |
+          mkdir -p _site
+          cat > _config.yml << 'EOF'
+          title: LearningToy Documentation
+          description: Multilingual language learning platform for children
+          theme: jekyll-theme-minimal
+          markdown: kramdown
+          highlighter: rouge
+          EOF
+
+      - name: Copy documentation to _site
+        run: |
+          # Copy docs directory
+          if [ -d "docs" ]; then
+            cp -r docs/* _site/
+          fi
+
+          # Copy README as index
+          cp README.md _site/index.md
+
+          # Add navigation to each file
+          for file in _site/*.md; do
+            if [ -f "$file" ]; then
+              # Add front matter and navigation
+              awk '
+                BEGIN {
+                  nav = "---\nlayout: default\n---\n\n"
+                  nav_links = "[**Home**](index.md) | [**Architecture**](architecture.md) | [**API**](api.md) | [**Deployment**](deployment.md)\n\n---\n\n"
+                }
+                /^# / && !done {
+                  print nav nav_links
+                  done = 1
+                }
+                { print }
+              ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+            fi
+          done
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./_site
+          destination: ./_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

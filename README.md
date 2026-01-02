@@ -1,6 +1,10 @@
 # LearningToy
 
-A multilingual language learning platform for children with a web-based device emulator, backend API, and parent dashboard.
+A multilingual language learning platform for children featuring a web-based device emulator, progressive learning graphs, and a parent dashboard.
+
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Python](https://img.shields.io/badge/python-3.11+-blue)
+![React](https://img.shields.io/badge/react-18-blue)
 
 ## Screenshots
 
@@ -16,25 +20,36 @@ A multilingual language learning platform for children with a web-based device e
 ## Features
 
 - **Device Emulator**: Web-based simulation of a physical learning device with screen and text chat
-- **Learning Graph**: Progressive word learning from simple to advanced concepts
-- **Parent Dashboard**: Track progress, view domain graphs, and manage vocabulary
-- **Multilingual**: Built-in support for English, Polish, and Spanish
+- **Learning Graph**: Progressive word learning using Directed Acyclic Graphs (DAG) from simple to advanced concepts
+- **Parent Dashboard**: Track progress, view interactive domain graphs, and manage vocabulary
+- **Multilingual**: Built-in support for English, Polish, and Spanish from day one
+- **JWT Authentication**: Secure parent accounts with child profile management
 
 ## Tech Stack
 
 ### Backend
-- FastAPI (Python 3.11+)
-- PostgreSQL 15
-- SQLAlchemy 2.0 (async)
-- Alembic (migrations)
-- JWT authentication
+- **FastAPI** (Python 3.11+) - Modern, fast web framework
+- **PostgreSQL 15** - Reliable relational database
+- **SQLAlchemy 2.0 (async)** - Async ORM for database operations
+- **Alembic** - Database migration tool
+- **JWT** - Token-based authentication
 
 ### Frontend
-- React 18 + Vite
-- TypeScript
-- Tailwind CSS
-- Zustand (state management)
-- React Router
+- **React 18 + Vite** - Fast build tool and dev server
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **Zustand** - Lightweight state management
+- **React Router** - Client-side routing
+- **ReactFlow** - Interactive graph visualization
+
+## Documentation
+
+- **[Architecture Guide](docs/architecture.md)** - System design, database schema, and learning algorithms
+- **[API Reference](docs/api.md)** - Complete API endpoint documentation with examples
+- **[Deployment Guide](docs/deployment.md)** - Production deployment instructions for various platforms
+- **[Implementation Plan](PLAN.md)** - Detailed development roadmap
+
+---
 
 ## Quick Start
 
@@ -166,4 +181,46 @@ LearningToy/
 - [ ] More domains and vocabulary
 - [ ] Gamification (streaks, badges)
 - [ ] Sibling leaderboard
-- [ ] Offline mode
+- [ ] Offline mode with service workers
+
+---
+
+## Learning Progress States
+
+```
+┌─────────┐    prerequisites met    ┌───────────┐
+│ locked  │ ──────────────────────> │ unlocked  │
+└─────────┘                         └───────────┘
+                                             │
+                                    first attempt
+                                             │
+                                             v
+┌───────────┐    practice needed    ┌─────────────┐
+│ practiced │ <─────────────────── │ in_progress │
+└───────────┘                      └─────────────┘
+     │                                   │
+     │ 3+ successful attempts             │ single attempt
+     │                                   │
+     v                                   v
+┌───────────┐                       ┌───────────┐
+│ mastered  │ <──────────────────── │ practiced │
+└───────────┘    successful         └───────────┘
+```
+
+---
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
