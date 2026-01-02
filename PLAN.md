@@ -9,6 +9,17 @@ A multilingual language learning platform for children with:
 - **Backend API**: FastAPI with learning graph and progress tracking
 - **Parent Dashboard**: React web interface for monitoring and customization
 
+## Screenshots
+
+### Login Page
+![Login Page](docs/screenshots/login-page.png)
+
+### Parent Dashboard
+![Parent Dashboard](docs/screenshots/dashboard.png)
+
+### Device Emulator
+![Device Emulator](docs/screenshots/device-emulator.png)
+
 ## Tech Stack
 - **Backend**: Python FastAPI + PostgreSQL + SQLAlchemy 2.0 async
 - **Frontend**: React + Vite + TypeScript + Tailwind CSS + ReactFlow

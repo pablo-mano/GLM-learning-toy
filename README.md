@@ -6,6 +6,17 @@ A multilingual language learning platform for children featuring a web-based dev
 ![Python](https://img.shields.io/badge/python-3.11+-blue)
 ![React](https://img.shields.io/badge/react-18-blue)
 
+## Screenshots
+
+### Login Page
+![Login Page](docs/screenshots/login-page.png)
+
+### Parent Dashboard
+![Parent Dashboard](docs/screenshots/dashboard.png)
+
+### Device Emulator
+![Device Emulator](docs/screenshots/device-emulator.png)
+
 ## Features
 
 - **Device Emulator**: Web-based simulation of a physical learning device with screen and text chat
