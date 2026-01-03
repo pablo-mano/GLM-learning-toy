@@ -1,0 +1,35 @@
+{
+  "feature": "commit-and-push-to-github",
+  "spec_name": "commit-and-push-to-github",
+  "workflow_type": "simple",
+  "total_phases": 1,
+  "recommended_workers": 1,
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Commit and Push",
+      "description": "Stage all changes, commit with descriptive message, and push to GitHub",
+      "depends_on": [],
+      "subtasks": [
+        {
+          "id": "subtask-1-1",
+          "description": "Add .worktrees/ to .gitignore if needed, stage all changes, commit, and push to origin/main",
+          "service": "git",
+          "status": "pending",
+          "files_to_create": [],
+          "files_to_modify": [".gitignore"],
+          "patterns_from": [],
+          "verification": {
+            "type": "manual",
+            "run": "git status && git log -1 --oneline"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "created_at": "2025-01-03T00:00:00Z",
+    "complexity": "simple",
+    "estimated_sessions": 1
+  }
+}
