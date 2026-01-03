@@ -26,7 +26,7 @@ export default function DashboardPage() {
     }
     fetchDomains()
     fetchChildren()
-  }, [user, navigate, fetchDomains, fetchChildren])
+  }, [user]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleLogout = () => {
     logout()
