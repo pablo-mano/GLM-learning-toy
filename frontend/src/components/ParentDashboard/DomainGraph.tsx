@@ -46,6 +46,44 @@ const nodeTypes = {
   wordNode: WordNode
 }
 
+// Transform LearningGraph data to ReactFlow nodes using levels array for positioning
+function transformToReactFlowNodes(graph: LearningGraph): Node[] {
+  const nodes: Node[] = []
+
+  // Iterate through levels array to position nodes hierarchically
+  graph.levels.forEach((level, levelIndex) => {
+    level.forEach((nodeId, indexInLevel) => {
+      // Find the corresponding graph node
+      const graphNode = graph.nodes.find(n => n.id === nodeId)
+      if (!graphNode) return
+
+      // Get label from translations (prefer en, fallback to pl, es, or '?')
+      const translations = graphNode.translations
+      const label = translations.en || translations.pl || translations.es || '?'
+
+      // Calculate position based on level structure
+      // Y-axis: levelIndex × 150 (vertical spacing between levels)
+      // X-axis: indexInLevel × 200 (horizontal spacing within level)
+      const position = {
+        x: indexInLevel * 200,
+        y: levelIndex * 150
+      }
+
+      nodes.push({
+        id: graphNode.id,
+        type: 'wordNode',
+        position,
+        data: {
+          label,
+          difficulty: graphNode.difficulty as 'beginner' | 'intermediate' | 'advanced'
+        }
+      })
+    })
+  })
+
+  return nodes
+}
+
 export default function DomainGraph({ domainId, childId }: DomainGraphProps) {
   const [graph, setGraph] = useState<LearningGraph | null>(null)
   const [isLoading, setIsLoading] = useState(true)
