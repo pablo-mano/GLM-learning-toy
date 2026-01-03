@@ -84,6 +84,15 @@ function transformToReactFlowNodes(graph: LearningGraph): Node[] {
   return nodes
 }
 
+// Transform LearningGraph edges to ReactFlow edges format
+function transformToReactFlowEdges(graph: LearningGraph): Edge[] {
+  return graph.edges.map((edge, index) => ({
+    id: `edge-${edge.from}-${edge.to}-${index}`,
+    source: edge.from,
+    target: edge.to
+  }))
+}
+
 export default function DomainGraph({ domainId, childId }: DomainGraphProps) {
   const [graph, setGraph] = useState<LearningGraph | null>(null)
   const [isLoading, setIsLoading] = useState(true)
