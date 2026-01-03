@@ -9,6 +9,43 @@ interface DomainGraphProps {
   childId: string
 }
 
+// Custom WordNode component
+interface WordNodeData {
+  label: string
+  difficulty: 'beginner' | 'intermediate' | 'advanced'
+}
+
+function WordNode({ data }: { data: WordNodeData }) {
+  const getNodeColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'beginner': return 'bg-green-100 border-green-400 text-green-700'
+      case 'intermediate': return 'bg-yellow-100 border-yellow-400 text-yellow-700'
+      case 'advanced': return 'bg-red-100 border-red-400 text-red-700'
+      default: return 'bg-gray-100 border-gray-400 text-gray-700'
+    }
+  }
+
+  const getNodeSize = (difficulty: string) => {
+    switch (difficulty) {
+      case 'beginner': return 'w-20 h-20'
+      case 'intermediate': return 'w-16 h-16'
+      case 'advanced': return 'w-14 h-14'
+      default: return 'w-16 h-16'
+    }
+  }
+
+  return (
+    <div className={`${getNodeColor(data.difficulty)} ${getNodeSize(data.difficulty)} rounded-full border-2 flex items-center justify-center p-2 text-xs font-medium text-center`}>
+      {data.label}
+    </div>
+  )
+}
+
+// NodeTypes object for ReactFlow
+const nodeTypes = {
+  wordNode: WordNode
+}
+
 export default function DomainGraph({ domainId, childId }: DomainGraphProps) {
   const [graph, setGraph] = useState<LearningGraph | null>(null)
   const [isLoading, setIsLoading] = useState(true)
