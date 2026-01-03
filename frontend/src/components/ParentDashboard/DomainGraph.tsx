@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import ReactFlow, { useNodesState, useEdgesState, Node, Edge } from 'reactflow'
+import 'reactflow/dist/style.css'
 import { domainService } from '@/services/domain.service'
 import type { LearningGraph } from '@/types/api'
 
