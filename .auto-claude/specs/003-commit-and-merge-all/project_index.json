@@ -1,0 +1,934 @@
+{
+  "project_root": "/Users/pablomano/Documents/Code_Projects/LearningToy",
+  "project_type": "monorepo",
+  "services": {
+    "frontend": {
+      "name": "frontend",
+      "path": "/Users/pablomano/Documents/Code_Projects/LearningToy/frontend",
+      "language": "TypeScript",
+      "framework": "React",
+      "type": "frontend",
+      "package_manager": "npm",
+      "default_port": 3000,
+      "build_tool": "Vite",
+      "styling": "Tailwind CSS",
+      "state_management": "Zustand",
+      "dev_command": "npm run dev",
+      "key_directories": {
+        "src": {
+          "path": "src",
+          "purpose": "Source code"
+        }
+      },
+      "entry_point": "src/App.tsx",
+      "dependencies": [
+        "react",
+        "react-dom",
+        "react-router-dom",
+        "axios",
+        "zustand",
+        "reactflow",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "dev_dependencies": [
+        "@types/react",
+        "@types/react-dom",
+        "@vitejs/plugin-react",
+        "autoprefixer",
+        "postcss",
+        "tailwindcss",
+        "typescript",
+        "vite"
+      ],
+      "dockerfile": "Dockerfile",
+      "consumes": [
+        "backend.api"
+      ]
+    },
+    "backend": {
+      "name": "backend",
+      "path": "/Users/pablomano/Documents/Code_Projects/LearningToy/backend",
+      "language": "Python",
+      "framework": "FastAPI",
+      "type": "backend",
+      "package_manager": "pip",
+      "default_port": 8000,
+      "orm": "SQLAlchemy",
+      "key_directories": {
+        "app": {
+          "path": "app",
+          "purpose": "Application code"
+        }
+      },
+      "dependencies": [
+        "fastapi",
+        "uvicorn",
+        "python-dotenv",
+        "sqlalchemy",
+        "asyncpg",
+        "alembic",
+        "python-jose",
+        "bcrypt",
+        "pydantic",
+        "pydantic-settings",
+        "email-validator",
+        "python-multipart"
+      ],
+      "dockerfile": "Dockerfile",
+      "environment": {
+        "variables": {
+          "DATABASE_URL": {
+            "value": "postgresql+asyncpg://learningtoy:learningtoy@localhost:5432/learningtoy",
+            "source": ".env",
+            "type": "path",
+            "sensitive": false,
+            "required": true
+          },
+          "SECRET_KEY": {
+            "value": "<REDACTED>",
+            "source": ".env",
+            "type": "string",
+            "sensitive": true,
+            "required": true
+          },
+          "ALGORITHM": {
+            "value": "HS256",
+            "source": ".env",
+            "type": "string",
+            "sensitive": false,
+            "required": true
+          },
+          "ACCESS_TOKEN_EXPIRE_MINUTES": {
+            "value": "<REDACTED>",
+            "source": ".env",
+            "type": "number",
+            "sensitive": true,
+            "required": true
+          },
+          "FRONTEND_URL": {
+            "value": "http://localhost:5173",
+            "source": ".env",
+            "type": "url",
+            "sensitive": false,
+            "required": true
+          }
+        },
+        "required_count": 5,
+        "optional_count": 0,
+        "detected_count": 5
+      },
+      "api": {
+        "routes": [
+          {
+            "path": "/",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/main.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/health",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/main.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/register",
+            "methods": [
+              "POST"
+            ],
+            "file": "app/api/auth.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/login",
+            "methods": [
+              "POST"
+            ],
+            "file": "app/api/auth.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/me",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/auth.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/children",
+            "methods": [
+              "POST"
+            ],
+            "file": "app/api/auth.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/children",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/auth.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/{domain_id}",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/domains.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/{domain_id}/words",
+            "methods": [
+              "POST"
+            ],
+            "file": "app/api/domains.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/{domain_id}/words",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/domains.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/{domain_id}/graph",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/domains.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/message",
+            "methods": [
+              "POST"
+            ],
+            "file": "app/api/chat.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/sessions/{session_id}/history",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/chat.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/child/{child_id}",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/progress.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/child/{child_id}/overview",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/progress.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/child/{child_id}/next-words",
+            "methods": [
+              "GET"
+            ],
+            "file": "app/api/progress.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          },
+          {
+            "path": "/child/{child_id}/word/{word_id}/attempt",
+            "methods": [
+              "POST"
+            ],
+            "file": "app/api/progress.py",
+            "framework": "FastAPI",
+            "requires_auth": false
+          }
+        ],
+        "total_routes": 17,
+        "methods": [
+          "POST",
+          "GET"
+        ],
+        "protected_routes": []
+      },
+      "database": {
+        "models": {
+          "User": {
+            "table": "users",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "email": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "password_hash": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "role": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "updated_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/user.py",
+            "orm": "SQLAlchemy"
+          },
+          "Domain": {
+            "table": "domains",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "user_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "name": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "description": {
+                "type": "Text",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "icon": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "color": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "is_system": {
+                "type": "Boolean",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "updated_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/domain.py",
+            "orm": "SQLAlchemy"
+          },
+          "ChatSession": {
+            "table": "chat_sessions",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "child_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "domain_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "started_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "ended_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "message_count": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "session_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "role": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "content": {
+                "type": "Text",
+                "primary_key": false,
+                "unique": false,
+                "nullable": false
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/chat.py",
+            "orm": "SQLAlchemy"
+          },
+          "ChatMessage": {
+            "table": "chat_sessions",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "session_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "role": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "content": {
+                "type": "Text",
+                "primary_key": false,
+                "unique": false,
+                "nullable": false
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/chat.py",
+            "orm": "SQLAlchemy"
+          },
+          "Child": {
+            "table": "children",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "user_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "name": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "birth_date": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "avatar_url": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "preferred_language": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "child_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "status": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "attempts": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "correct_count": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "streak_count": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "last_practiced_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "unlocked_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "mastered_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "updated_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/progress.py",
+            "orm": "SQLAlchemy"
+          },
+          "Progress": {
+            "table": "children",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "child_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "status": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "attempts": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "correct_count": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "streak_count": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "last_practiced_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "unlocked_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "mastered_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "updated_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/progress.py",
+            "orm": "SQLAlchemy"
+          },
+          "Word": {
+            "table": "words",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "domain_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "difficulty": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "image_url": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "audio_url": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "sort_order": {
+                "type": "Integer",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "is_active": {
+                "type": "Boolean",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "language": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "text": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "phonetic": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "example_sentence": {
+                "type": "Text",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/word.py",
+            "orm": "SQLAlchemy"
+          },
+          "WordTranslation": {
+            "table": "words",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "language": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "text": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "phonetic": {
+                "type": "String",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "example_sentence": {
+                "type": "Text",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "prerequisite_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/word.py",
+            "orm": "SQLAlchemy"
+          },
+          "WordPrerequisite": {
+            "table": "words",
+            "fields": {
+              "id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "word_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "prerequisite_id": {
+                "type": "Unknown",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              },
+              "created_at": {
+                "type": "DateTime",
+                "primary_key": false,
+                "unique": false,
+                "nullable": true
+              }
+            },
+            "file": "app/models/word.py",
+            "orm": "SQLAlchemy"
+          }
+        },
+        "total_models": 9,
+        "model_names": [
+          "User",
+          "Domain",
+          "ChatSession",
+          "ChatMessage",
+          "Child",
+          "Progress",
+          "Word",
+          "WordTranslation",
+          "WordPrerequisite"
+        ]
+      },
+      "services": {
+        "auth_providers": [
+          {
+            "type": "jwt",
+            "client": "python-jose"
+          }
+        ]
+      },
+      "auth": {
+        "strategies": [
+          "jwt"
+        ],
+        "libraries": [
+          "python-jose"
+        ],
+        "user_model": "app/models/user.py",
+        "middleware": []
+      },
+      "migrations": {
+        "tool": "alembic",
+        "directory": "alembic/versions",
+        "config_file": "alembic.ini",
+        "commands": {
+          "upgrade": "alembic upgrade head",
+          "downgrade": "alembic downgrade -1",
+          "create": "alembic revision --autogenerate -m 'message'"
+        }
+      },
+      "api_documentation": {
+        "type": "openapi",
+        "auto_generated": true,
+        "docs_url": "/docs",
+        "redoc_url": "/redoc",
+        "openapi_url": "/openapi.json"
+      },
+      "monitoring": {
+        "health_checks": [
+          "/health"
+        ]
+      }
+    }
+  },
+  "infrastructure": {
+    "docker_compose": "docker-compose.yml",
+    "docker_services": [
+      "postgres",
+      "backend",
+      "frontend"
+    ],
+    "ci": "GitHub Actions",
+    "ci_workflows": [
+      "docs.yml"
+    ]
+  },
+  "conventions": {}
+}

@@ -1,0 +1,25 @@
+{
+  "active": true,
+  "spec": "003-commit-and-merge-all",
+  "state": "building",
+  "subtasks": {
+    "completed": 0,
+    "total": 1,
+    "in_progress": 1,
+    "failed": 0
+  },
+  "phase": {
+    "current": "Commit and Push",
+    "id": 1,
+    "total": 1
+  },
+  "workers": {
+    "active": 0,
+    "max": 1
+  },
+  "session": {
+    "number": 1,
+    "started_at": "2026-01-03T14:34:11.154053"
+  },
+  "last_update": "2026-01-03T14:34:11.211111"
+}
