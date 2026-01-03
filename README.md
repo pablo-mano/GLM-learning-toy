@@ -14,6 +14,16 @@ A multilingual language learning platform for children featuring a web-based dev
 ### Parent Dashboard
 ![Parent Dashboard](docs/screenshots/dashboard.png)
 
+### Dashboard with Domains
+![Dashboard with Domains](docs/screenshots/dashboard-with-domains.png)
+
+The parent dashboard displays available learning domains as interactive cards, allowing parents to explore vocabulary graphs and track progress across different topic areas.
+
+### Space Domain
+![Space Domain](docs/screenshots/space-domain.png)
+
+Interactive domain visualization showing the learning graph for Space vocabulary. Words are connected in a DAG structure from beginner concepts to advanced terms.
+
 ### Device Emulator
 ![Device Emulator](docs/screenshots/device-emulator.png)
 
