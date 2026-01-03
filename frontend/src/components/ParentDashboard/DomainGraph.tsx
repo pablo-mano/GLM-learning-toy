@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import ReactFlow, { useNodesState, useEdgesState, Node, Edge } from 'reactflow'
+import ReactFlow, { useNodesState, useEdgesState, Node, Edge, Controls, MiniMap, Background } from 'reactflow'
 import 'reactflow/dist/style.css'
 import { domainService } from '@/services/domain.service'
 import type { LearningGraph } from '@/types/api'
@@ -134,7 +134,11 @@ export default function DomainGraph({ domainId, childId }: DomainGraphProps) {
             fitView
             minZoom={0.5}
             maxZoom={1.5}
-          />
+          >
+            <Controls />
+            <MiniMap />
+            <Background />
+          </ReactFlow>
         </div>
       ) : (
         <p className="text-gray-500 text-center py-8">No graph data available</p>
