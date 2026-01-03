@@ -124,7 +124,7 @@ export default function DomainGraph({ domainId, childId }: DomainGraphProps) {
       {isLoading ? (
         <div className="animate-pulse h-64 bg-gray-100 rounded-lg" />
       ) : nodes.length > 0 ? (
-        <div className="h-[600px] border border-gray-200 rounded-lg">
+        <div className="relative h-[600px] border border-gray-200 rounded-lg">
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -139,6 +139,22 @@ export default function DomainGraph({ domainId, childId }: DomainGraphProps) {
             <MiniMap />
             <Background />
           </ReactFlow>
+
+          {/* Legend */}
+          <div className="absolute bottom-2 left-2 flex gap-3 bg-white/90 rounded-lg px-3 py-2 text-xs shadow-md z-10">
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded-full bg-green-200 border border-green-400" />
+              Beginner
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded-full bg-yellow-200 border border-yellow-400" />
+              Intermediate
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded-full bg-red-200 border border-red-400" />
+              Advanced
+            </span>
+          </div>
         </div>
       ) : (
         <p className="text-gray-500 text-center py-8">No graph data available</p>
