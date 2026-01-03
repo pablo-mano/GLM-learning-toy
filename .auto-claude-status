@@ -1,25 +1,25 @@
 {
   "active": true,
-  "spec": "003-commit-and-merge-all",
-  "state": "building",
+  "spec": "004-002-refresh-readme-md-with-current-scrteenshots-us",
+  "state": "complete",
   "subtasks": {
-    "completed": 0,
-    "total": 1,
-    "in_progress": 1,
+    "completed": 3,
+    "total": 3,
+    "in_progress": 0,
     "failed": 0
   },
   "phase": {
-    "current": "Commit and Push",
+    "current": "Update Screenshots and Push",
     "id": 1,
-    "total": 1
+    "total": 3
   },
   "workers": {
     "active": 0,
     "max": 1
   },
   "session": {
-    "number": 1,
-    "started_at": "2026-01-03T14:34:11.154053"
+    "number": 3,
+    "started_at": "2026-01-03T14:44:04.605478"
   },
-  "last_update": "2026-01-03T14:34:11.211111"
+  "last_update": "2026-01-03T14:48:19.605221"
 }

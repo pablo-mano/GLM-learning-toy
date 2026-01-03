@@ -1,0 +1,16 @@
+{
+  "task_description": "Copy new screenshots from .playwright-mcp/ to docs/screenshots/ and update README.md to include them, then merge and push to main branch.",
+  "scoped_services": [],
+  "files_to_modify": [
+    "README.md",
+    "docs/screenshots/dashboard-with-domains.png",
+    "docs/screenshots/space-domain.png"
+  ],
+  "files_to_reference": [
+    ".playwright-mcp/dashboard-with-domains.png",
+    ".playwright-mcp/space-domain.png"
+  ],
+  "patterns": {},
+  "service_contexts": {},
+  "created_at": "2025-01-03T12:00:00.000Z"
+}
