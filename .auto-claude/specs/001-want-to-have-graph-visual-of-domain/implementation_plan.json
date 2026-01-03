@@ -1,0 +1,354 @@
+{
+  "feature": "Interactive ReactFlow Graph Visualization for Learning Domain",
+  "workflow_type": "feature",
+  "workflow_rationale": "This is a frontend enhancement that upgrades the existing basic SVG graph rendering to use ReactFlow for interactive visualization. It adds new capabilities (pan, zoom, minimap) while maintaining compatibility with the existing backend API.",
+  "phases": [
+    {
+      "id": "phase-1-setup",
+      "name": "Setup ReactFlow Foundation",
+      "type": "setup",
+      "description": "Import ReactFlow components and create custom node component with difficulty-based styling",
+      "depends_on": [],
+      "parallel_safe": true,
+      "subtasks": [
+        {
+          "id": "subtask-1-1",
+          "description": "Import ReactFlow library and CSS stylesheet",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [],
+          "verification": {
+            "type": "command",
+            "command": "cd frontend && npm run build",
+            "expected": "Build succeeds without import errors"
+          },
+          "status": "completed",
+          "notes": "Successfully imported ReactFlow library and CSS stylesheet. Added imports for ReactFlow, useNodesState, useEdgesState, Node, Edge from 'reactflow' and critical CSS import 'reactflow/dist/style.css'. Verified reactflow v11.10.4 is installed in package.json. Changes committed.",
+          "updated_at": "2026-01-03T12:24:59.381432+00:00"
+        },
+        {
+          "id": "subtask-1-2",
+          "description": "Create custom WordNode component with difficulty-based colors",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "verification": {
+            "type": "manual",
+            "instructions": "Verify nodeTypes object defined outside component with wordNode type"
+          },
+          "status": "completed",
+          "notes": "Successfully created custom WordNode component with difficulty-based colors (beginner=green, intermediate=yellow, advanced=red). Defined nodeTypes object outside component with wordNode type. Component uses rounded-full border-2 styling with dynamic sizing based on difficulty level. Ready for ReactFlow integration.",
+          "updated_at": "2026-01-03T12:26:45.383558+00:00"
+        }
+      ]
+    },
+    {
+      "id": "phase-2-data-transformation",
+      "name": "Data Transformation Layer",
+      "type": "implementation",
+      "description": "Transform backend LearningGraph data into ReactFlow nodes/edges format using levels array for positioning",
+      "depends_on": [
+        "phase-1-setup"
+      ],
+      "parallel_safe": false,
+      "subtasks": [
+        {
+          "id": "subtask-2-1",
+          "description": "Implement transformToReactFlowNodes function using levels array",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [
+            "frontend/src/types/api.ts"
+          ],
+          "verification": {
+            "type": "manual",
+            "instructions": "Verify function maps levels[levelIndex][nodeIndex] to position {x, y}"
+          },
+          "status": "completed",
+          "notes": "Successfully implemented transformToReactFlowNodes function. Function iterates through graph.levels array and maps each node to ReactFlow format with hierarchical positioning (Y = levelIndex \u00d7 150, X = indexInLevel \u00d7 200). Includes proper TypeScript typing, translation extraction logic, and error handling for missing nodes. Verified implementation matches specification exactly.",
+          "updated_at": "2026-01-03T12:28:11.783149+00:00"
+        },
+        {
+          "id": "subtask-2-2",
+          "description": "Implement transformToReactFlowEdges function",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [
+            "frontend/src/types/api.ts"
+          ],
+          "verification": {
+            "type": "manual",
+            "instructions": "Verify edges transform: rename from\u2192source, to\u2192target"
+          },
+          "status": "completed",
+          "notes": "Implemented transformToReactFlowEdges function that transforms GraphEdge[] to ReactFlow Edge[] format by renaming from\u2192source and to\u2192target, with unique IDs",
+          "updated_at": "2026-01-03T12:29:28.548707+00:00"
+        }
+      ]
+    },
+    {
+      "id": "phase-3-reactflow-integration",
+      "name": "ReactFlow Component Integration",
+      "type": "implementation",
+      "description": "Replace SVG rendering with ReactFlow component and add interactive controls",
+      "depends_on": [
+        "phase-2-data-transformation"
+      ],
+      "parallel_safe": false,
+      "subtasks": [
+        {
+          "id": "subtask-3-1",
+          "description": "Replace SVG with ReactFlow component using useNodesState/useEdgesState hooks",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "verification": {
+            "type": "browser",
+            "url": "http://localhost:5173/dashboard",
+            "checks": [
+              "ReactFlow graph renders",
+              "Nodes positioned hierarchically",
+              "Edges connect nodes"
+            ]
+          },
+          "status": "completed",
+          "notes": "Successfully replaced SVG visualization with ReactFlow component. Used useNodesState/useEdgesState hooks to manage nodes and edges. Integrated transformToReactFlowNodes/transformToReactFlowEdges functions to convert LearningGraph data. Added proper ReactFlow props including fitView, zoom controls, and nodeTypes.",
+          "updated_at": "2026-01-03T12:30:54.227513+00:00"
+        },
+        {
+          "id": "subtask-3-2",
+          "description": "Add Controls, MiniMap, and Background components for UX",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [],
+          "verification": {
+            "type": "browser",
+            "url": "http://localhost:5173/dashboard",
+            "checks": [
+              "Controls visible (zoom buttons)",
+              "MiniMap visible in corner",
+              "Background grid visible"
+            ]
+          },
+          "status": "completed",
+          "notes": "Successfully added Controls, MiniMap, and Background components to ReactFlow graph. Imported Controls, MiniMap, and Background from 'reactflow' and added them as children inside the ReactFlow component. These UX enhancements provide zoom controls, a minimap for navigation, and a background grid for better visual context. Changes committed.",
+          "updated_at": "2026-01-03T12:32:14.717473+00:00"
+        }
+      ]
+    },
+    {
+      "id": "phase-4-polish",
+      "name": "Polish and Edge Cases",
+      "type": "implementation",
+      "description": "Handle edge cases, add fitView, and ensure existing functionality preserved",
+      "depends_on": [
+        "phase-3-reactflow-integration"
+      ],
+      "parallel_safe": false,
+      "subtasks": [
+        {
+          "id": "subtask-4-1",
+          "description": "Add fitView prop and handle empty graph state",
+          "service": "frontend",
+          "files_to_modify": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "files_to_create": [],
+          "patterns_from": [
+            "frontend/src/components/ParentDashboard/DomainGraph.tsx"
+          ],
+          "verification": {
+            "type": "browser",
+            "url": "http://localhost:5173/dashboard",
+            "checks": [
+              "Graph auto-fits to viewport on load",
+              "Empty state message shows for domains with no words"
+            ]
+          },
+          "status": "completed",
+          "notes": "fitView prop and empty graph state handling were already implemented in subtask-3-1. Verified: ReactFlow component has fitView prop (line 134) which auto-fits graph to viewport on load, and empty state message \"No graph data available\" displays when nodes.length === 0 (lines 143-145). No additional changes needed.",
+          "updated_at": "2026-01-03T12:33:47.844429+00:00"
+        },
+        {
+          "id": "subtask-4-2",
+          "description": "Verify no regressions in existing functionality",
+          "service": "frontend",
+          "files_to_modify": [],
+          "files_to_create": [],
+          "patterns_from": [],
+          "verification": {
+            "type": "browser",
+            "url": "http://localhost:5173/dashboard",
+            "checks": [
+              "No console errors",
+              "Data fetching works",
+              "Loading state works",
+              "Difficulty colors preserved",
+              "Legend still visible"
+            ]
+          },
+          "status": "pending",
+          "notes": "Full regression check before marking complete"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_phases": 4,
+    "total_subtasks": 8,
+    "services_involved": [
+      "frontend"
+    ],
+    "parallelism": {
+      "max_parallel_phases": 1,
+      "parallel_groups": [],
+      "recommended_workers": 1,
+      "speedup_estimate": "Sequential execution (single file modification)"
+    },
+    "startup_command": "source auto-claude/.venv/bin/activate && python auto-claude/run.py --spec 001 --parallel 1"
+  },
+  "verification_strategy": {
+    "risk_level": "medium",
+    "skip_validation": false,
+    "test_creation_phase": "post_implementation",
+    "test_types_required": [
+      "unit",
+      "integration"
+    ],
+    "security_scanning_required": false,
+    "staging_deployment_required": false,
+    "acceptance_criteria": [
+      "ReactFlow component renders instead of basic SVG",
+      "Graph displays hierarchical layout based on backend levels array",
+      "Custom nodes show difficulty-based colors (green/yellow/red)",
+      "Interactive controls (pan, zoom) work correctly",
+      "MiniMap displays for navigation",
+      "No console errors or warnings",
+      "Existing functionality preserved (data fetching, error handling)",
+      "Graph viewport auto-fits on initial load"
+    ],
+    "verification_steps": [
+      {
+        "name": "Build Check",
+        "command": "cd frontend && npm run build",
+        "expected_outcome": "Build succeeds without errors",
+        "type": "build",
+        "required": true,
+        "blocking": true
+      },
+      {
+        "name": "Unit Tests",
+        "command": "cd frontend && npm test -- DomainGraph",
+        "expected_outcome": "All DomainGraph tests pass (if tests exist)",
+        "type": "test",
+        "required": false,
+        "blocking": false
+      },
+      {
+        "name": "Browser Verification",
+        "command": "manual",
+        "expected_outcome": "ReactFlow graph renders with all interactive controls functional",
+        "type": "browser",
+        "required": true,
+        "blocking": true
+      }
+    ],
+    "reasoning": "Medium risk change - upgrades critical visualization component but doesn't touch backend or data models. Browser verification essential to confirm interactive features work correctly."
+  },
+  "qa_acceptance": {
+    "unit_tests": {
+      "required": false,
+      "commands": [
+        "cd frontend && npm test"
+      ],
+      "minimum_coverage": null,
+      "notes": "Unit tests not currently present in repository - focus on browser verification"
+    },
+    "integration_tests": {
+      "required": true,
+      "commands": [
+        "cd frontend && npm run dev"
+      ],
+      "services_to_test": [
+        "frontend"
+      ],
+      "notes": "Verify API integration with backend graph endpoint still works"
+    },
+    "e2e_tests": {
+      "required": false,
+      "commands": [],
+      "flows": []
+    },
+    "browser_verification": {
+      "required": true,
+      "pages": [
+        {
+          "url": "http://localhost:5173/dashboard",
+          "checks": [
+            "ReactFlow graph renders",
+            "Nodes positioned hierarchically (levels visible)",
+            "Edges connect nodes with arrows",
+            "Difficulty colors preserved (green/yellow/red)",
+            "Controls present (zoom in/out, fit view)",
+            "MiniMap visible in corner",
+            "Background grid visible",
+            "Pan and zoom interactions work smoothly",
+            "No console errors",
+            "Loading state shows while fetching",
+            "Empty state shows for domains with no words",
+            "fitView auto-zoom works on initial load"
+          ]
+        }
+      ]
+    },
+    "database_verification": {
+      "required": false,
+      "checks": [],
+      "notes": "No database changes - frontend only"
+    },
+    "performance_verification": {
+      "required": true,
+      "checks": [
+        {
+          "metric": "Initial render time",
+          "method": "Chrome DevTools Performance",
+          "expected": "Graph renders within 500ms for <100 nodes"
+        },
+        {
+          "metric": "Interaction smoothness",
+          "method": "Manual testing",
+          "expected": "60fps during pan/zoom operations"
+        },
+        {
+          "metric": "Memory usage",
+          "method": "Chrome DevTools Memory",
+          "expected": "No memory leaks after multiple graph loads"
+        }
+      ]
+    }
+  },
+  "qa_signoff": null,
+  "last_updated": "2026-01-03T12:33:47.844437+00:00"
+}
